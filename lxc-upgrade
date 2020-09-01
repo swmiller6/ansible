@@ -1,0 +1,14 @@
+---
+- hosts: [servers]
+  remote_user: shannon
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Install provisioning dependencies
+      apt: name=python-lxc
+    - name: Update Systems
+      lxc_container:
+        name: "*"
+        container_command: |
+          apt-get update
+          apt-get -y upgrade

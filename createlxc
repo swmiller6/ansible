@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  remote_user: shannon
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Create a started container
+      lxc_container:
+        name: test-container-started
+        container_log: true
+        template: ubuntu
+        state: started
+        template_options: --release trusty
