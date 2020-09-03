@@ -1,6 +1,33 @@
 ---
 all:
-        hosts:
-                192.168.1.118
-        vars:
-                
+        children:
+                dom_ubuntu:
+                        hosts:
+                                192.168.1.170
+                        vars:
+                                ansible_user: dom01
+                                ansible_sudo_pass: '!r0ntr3342'
+                                ansible_python_interpreter: /usr/bin/python3
+                dom_centos:
+                        hosts:
+                                192.168.1.140
+                        vars:
+                                ansible_user: dom01
+                                ansible_sudo_pass: '!r0ntr3342'
+                miller_ubuntu:
+                        hosts:
+                                192.168.1.214
+                                192.168.1.124
+                                192.168.1.146
+                                192.168.1.118
+                        vars:
+                                ansible_user: swmiller6
+                                ansible_sudo_pass: irontree42
+                                ansible_python_interpreter: /usr/bin/python3
+                miller_pi:
+                        hosts:
+                                192.168.1.164
+                        vars:
+                                ansible_user: dietpi
+                                ansible_sudo_pass: irontree42
+                                ansible_python_interpreter: /usr/bin/python3

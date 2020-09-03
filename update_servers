@@ -3,13 +3,20 @@
   become: true
   become_user: root
   vars:
-    ansible_python_interpreter: /usr/bin/python3
+    #ansible_python_interpreter: /usr/bin/python3
   tasks:
+
     - name: Update apt repo and apply available updates on all Debian/Ubuntu boxes
       apt: 
         upgrade: dist
         update_cache: yes 
-      when: ansible_facts['distribution'] == "Ubuntu"
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Update cache and packages for centos
+      dnf:
+        update_only: yes
+        update_cache: yes
+      when: ansible_distribution == "Centos" 
 
     - name: check if kernel was updated and reboot if yes  
       register: reboot_required_file
