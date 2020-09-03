@@ -10,13 +10,13 @@
       apt: 
         upgrade: dist
         update_cache: yes 
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_os_family == "Debian"
 
     - name: Update cache and packages for centos
       dnf:
         update_only: yes
         update_cache: yes
-      when: ansible_distribution == "Centos" 
+      when: ansible_distribution == "CentOS" 
 
     - name: check if kernel was updated and reboot if yes  
       register: reboot_required_file
